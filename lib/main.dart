@@ -26,10 +26,10 @@ class App extends StatelessWidget {
           theme: ThemeData.dark().copyWith(
             scaffoldBackgroundColor: ColorApp.appColor,
           ),
-          home: HomePage(),
+          home: const HomePage(),
           routes: {
             '/createTask': (context) => const CreateTask(),
-            '/home': (context) => HomePage(),
+            '/home': (context) => const HomePage(),
           },
         ),
       ),

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 import 'package:task2_flutter/screens/components/task_options.dart';
 
-import '../constants/asset_data.dart';
 import '../constants/colors.dart';
 import '../providers/task_provider.dart';
+import 'components/custom_app_bar.dart';
+import 'components/list_view_button.dart';
 import 'components/personal_profile.dart';
 import 'components/pinned_task.dart';
 import 'components/progress_indicator.dart';
@@ -22,32 +22,8 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Consumer<TaskProvider>(builder: (context, taskProvider, _) {
       return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.transparent,
-          leading: Padding(
-            padding: const EdgeInsets.only(left: 10),
-            child: SvgPicture.asset(
-              AssetData.logoPath,
-            ),
-          ),
-          title: const Text(
-            "ToDo",
-            style: TextStyle(
-              fontSize: 30,
-              fontWeight: FontWeight.w700,
-              color: ColorApp.secondaryColor,
-            ),
-          ),
-          actions: [
-            Padding(
-              padding: const EdgeInsets.only(right: 10),
-              child: SvgPicture.asset(
-                AssetData.settingsPath,
-                width: 20,
-                height: 20,
-              ),
-            ),
-          ],
+        appBar: const MyAppBar(
+          text: "ToDo",
         ),
         body: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -60,48 +36,9 @@ class _HomePageState extends State<HomePage> {
             const SizedBox(
               height: 20,
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Text(
-                    "Your Tasks",
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w700,
-                      color: ColorApp.primaryColor,
-                    ),
-                  ),
-                  SizedBox(
-                    width: 150,
-                    height: 30,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        Navigator.pushNamed(context, '/createTask');
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: ColorApp.button,
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          SvgPicture.asset(AssetData.taskPlusPath),
-                          const SizedBox(
-                            width: 4,
-                          ),
-                          const Text(
-                            "Add",
-                            style: TextStyle(
-                              color: ColorApp.primaryColor,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20),
+              child: MyAddButton(),
             ),
             Expanded(
               child: ListView.builder(
