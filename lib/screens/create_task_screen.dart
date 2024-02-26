@@ -67,10 +67,11 @@ class _CreateTaskState extends State<CreateTask> {
                   const SizedBox(
                     height: 25,
                   ),
-                  Container(
+                  const Divider(
                     height: 1,
-                    width: double.infinity,
-                    color: ColorApp.primaryColor,
+                    thickness: 1,
+                    color: ColorApp.divider,
+                    endIndent: 1,
                   ),
                   const SizedBox(
                     height: 25,
