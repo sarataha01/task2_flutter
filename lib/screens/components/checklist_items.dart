@@ -14,7 +14,6 @@ class CheckListItem extends StatelessWidget {
         if (isChecked)
           const CircleAvatar(
             radius: 8,
-            //backgroundColor: Colors.green,
             child: Icon(
               Icons.check_circle_sharp,
               size: 17,
@@ -28,11 +27,15 @@ class CheckListItem extends StatelessWidget {
             color: ColorApp.primaryColor,
           ),
         const SizedBox(width: 5),
-        Text(
-          text,
-          style: TextStyle(
-            fontSize: 16,
-            color: isChecked ? ColorApp.finished : ColorApp.primaryColor,
+        Expanded(
+          child: Text(
+            text,
+            overflow: TextOverflow.ellipsis,
+            maxLines: 1,
+            style: TextStyle(
+              fontSize: 16,
+              color: isChecked ? ColorApp.finished : ColorApp.primaryColor,
+            ),
           ),
         ),
       ],

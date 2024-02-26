@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:task2_flutter/constants/colors.dart';
+import 'package:task2_flutter/providers/task_provider.dart';
 import 'package:task2_flutter/screens/create_task_screen.dart';
 import 'package:task2_flutter/screens/home_page.dart';
 
@@ -12,17 +14,24 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData.dark().copyWith(
-          scaffoldBackgroundColor: ColorApp.appColor,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (BuildContext context) => TaskProvider(),
         ),
-        home: HomePage(),
-        routes: {
-          '/createTask': (context) => const CreateTask(),
-          '/home': (context) => HomePage(),
-        },
+      ],
+      child: SafeArea(
+        child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          theme: ThemeData.dark().copyWith(
+            scaffoldBackgroundColor: ColorApp.appColor,
+          ),
+          home: HomePage(),
+          routes: {
+            '/createTask': (context) => const CreateTask(),
+            '/home': (context) => HomePage(),
+          },
+        ),
       ),
     );
   }
